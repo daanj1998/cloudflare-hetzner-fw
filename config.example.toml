@@ -1,0 +1,32 @@
+[hetzner]
+# The numeric ID shown in the firewall's Hetzner Console URL/API response.
+firewall_id = 123456
+# This is the NAME of the environment variable. Never paste the token here.
+token_env = "HCLOUD_TOKEN"
+# Relative paths are resolved from the directory containing this config file.
+env_file = ".env"
+
+[cloudflare]
+include_ipv4 = true
+include_ipv6 = true
+
+[firewall]
+ports = [80, 443]
+# Optional trusted monitoring, load-balancer, or administrator networks.
+# Use CIDR notation, including /32 for one IPv4 address or /128 for one IPv6 address.
+extra_source_cidrs = []
+
+# Refuse to update if another rule exposes one of the ports above to an
+# unapproved source. Keeping this enabled protects against configuration drift.
+strict_web_rules = true
+
+# Rules beginning with this text are owned and replaced by this program.
+# Do not reuse this prefix on hand-written rules.
+description_prefix = "cf-hetzner-fw:"
+
+[runtime]
+request_timeout_seconds = 15
+max_attempts = 4
+action_timeout_seconds = 120
+# The supplied systemd unit creates this directory automatically.
+lock_file = "/run/cf-hetzner-fw/sync.lock"

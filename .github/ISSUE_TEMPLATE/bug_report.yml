@@ -1,0 +1,69 @@
+name: Bug report
+description: Report reproducible incorrect behavior
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include API tokens, account IDs, public IP addresses, or other
+        sensitive infrastructure details. Report vulnerabilities privately
+        according to SECURITY.md.
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Output from `python3 cf_hetzner_fw.py --version`.
+      placeholder: cf_hetzner_fw.py 1.1.0
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Python version, Linux distribution, and installation method.
+      placeholder: Python 3.12 on Debian 13, installed with systemd
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem
+      description: Describe what happened and what you expected instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: >-
+        Provide the smallest safe sequence that reproduces the problem.
+      placeholder: |
+        1. Configure ...
+        2. Run with --dry-run ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized logs
+      description: Remove tokens, IDs, addresses, and unrelated infrastructure details.
+      render: text
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety checks
+      options:
+        - label: >-
+            I removed secrets and sensitive infrastructure details.
+          required: true
+        - label: I searched the existing issues for this problem.
+          required: true

@@ -1,0 +1,12 @@
+[Unit]
+Description=Hourly Cloudflare-to-Hetzner firewall synchronization
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=1h
+RandomizedDelaySec=10min
+Persistent=true
+Unit=cf-hetzner-fw.service
+
+[Install]
+WantedBy=timers.target
